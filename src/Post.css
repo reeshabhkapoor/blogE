@@ -17,9 +17,12 @@
   margin-right: 10px;
 }
 
-.post__topInfo > h3 {
+.post__topInfo > p {
   font-size: small;
   color: gray;
+}
+.post__topInfo > h3 {
+  font-size: medium;
 }
 
 .post__bottom {
@@ -60,3 +63,6 @@
   border-radius: 10px;
 }
 
+.counter{
+    padding:5px;
+}

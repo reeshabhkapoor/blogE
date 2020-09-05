@@ -27,34 +27,46 @@
   background-color: #eff2f5;
 }
 
-.messageSender__top > form > button {
-  display: none;
+.submitPost {
+  margin: 5px;
 }
 
+.submitPost > .MuiSvgIcon-root {
+  font-size: x-large;
+}
+.submitPost {
+  padding: 5px;
+  margin: 3px;
+}
+
+.submitPost:hover {
+  background-color: #effef5;
+  border-radius: 20px;
+}
 .messageSender__input {
   flex: 1;
 }
 
-.messageSender__bottom{
-    display: flex;
-    justify-content: space-evenly;
+.messageSender__bottom {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.messageSender__option{
-    padding:20px;
-    display: flex;
-    align-items: center;
-    color:gray;
-    margin: 5px;
+.messageSender__option {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  color: gray;
+  margin: 5px;
 }
 
-.messageSender__option > h3{
-    font-size:medium;
-    margin-left: 10px;
-    cursor: pointer;
+.messageSender__option > h3 {
+  font-size: medium;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
-.messageSender__option:hover{
-   background-color: #effef5;
-   border-radius: 20px;
+.messageSender__option:hover {
+  background-color: #effef5;
+  border-radius: 20px;
 }

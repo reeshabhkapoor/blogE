@@ -7,6 +7,7 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useStateValue } from "./StateProvider";
 import db from "./firebase";
 import firebase from "firebase";
+import PublishIcon from "@material-ui/icons/Publish";
 
 function MessageSender() {
   const [input, setInput] = useState("");
@@ -19,7 +20,7 @@ function MessageSender() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+
     db.collection("posts").add({
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -49,9 +50,11 @@ function MessageSender() {
             type="text"
             placeholder="image URL (Optional)"
           />
-          <button onClick={handleSubmit} type="submit">
-            Hidden Submit
-          </button>
+          <div className="submitPost">
+            <PublishIcon onClick={handleSubmit} type="submit">
+              Hidden Submit
+            </PublishIcon>
+          </div>
         </form>
       </div>
       <div className="messageSender__bottom">
