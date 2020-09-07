@@ -110,18 +110,13 @@ function MessageSender() {
 
         <div onClick={openEmoji} className="messageSender__option">
           <InsertEmoticonIcon style={{ color: "orange" }} />
-          <h3>Feeling</h3>
-          {emojiDisplay ? (
+          <h3>Feeling</h3>          
+        </div>
+        {emojiDisplay ? (
           <div className="emojiContainer">
             <Picker onEmojiClick={onEmojiClick} />
           </div>
         ) : null}
-        </div>
-        {/* {emojiDisplay ? (
-          <div className="emojiContainer">
-            <Picker onEmojiClick={onEmojiClick} />
-          </div>
-        ) : null} */}
       </div>
     </div>
   );
