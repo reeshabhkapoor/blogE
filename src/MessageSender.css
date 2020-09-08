@@ -85,8 +85,18 @@
 
 .emojiContainer {
   top: 120px;
-  left:480px;
+  left: 480px;
   z-index: 10;
   position: absolute;
   margin: 5px;
+}
+
+.messageSender__middle {
+  display: flex;
+  padding-left: 15px;
+}
+
+.messageSender__middle > p {
+  font-size: small;
+  color: gray;
 }

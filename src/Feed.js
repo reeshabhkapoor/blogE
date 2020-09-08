@@ -28,6 +28,7 @@ function Feed() {
           image={post.data.image}
           message={post.data.message}
           timestamp={post.data.timestamp}
+          feeling={post.data.feeling}
         />
       ))}
     </div>

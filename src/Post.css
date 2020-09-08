@@ -21,7 +21,7 @@
   font-size: small;
   color: gray;
 }
-.post__topInfo > h3 {
+.post__topInfo h3 {
   font-size: medium;
 }
 
@@ -63,6 +63,17 @@
   border-radius: 10px;
 }
 
-.counter{
-    padding:5px;
+.counter {
+  padding: 5px;
+}
+
+.name__feeling {
+  display: flex;
+}
+
+.feeling {
+  padding:3px 0;
+  font-size: small;
+  color: gray;
+  margin-left: 5px;
 }

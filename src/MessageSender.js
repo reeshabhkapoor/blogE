@@ -21,19 +21,11 @@ function MessageSender() {
   const onEmojiClick = (event, emojiObject) => {
     var currentValue = input;
     setChosenEmoji(emojiObject);
-
-    // if (chosenEmoji != null) {
-    //   setInput((prevValue) => prevValue + chosenEmoji.emoji);
-    // }
   };
 
   const openEmoji = () => {
     changeEmojiDisplay(!emojiDisplay);
-    if (input === "") {
-      setInput("Feeling ");
-    } else {
-      setInput("");
-    }
+    setChosenEmoji(null);
   };
 
   const changeEvent = (event) => {
@@ -42,21 +34,14 @@ function MessageSender() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    emojiDisplay
-      ? db.collection("posts").add({
-          message: "is feeling " + chosenEmoji.emoji,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          profilePic: user.photoURL,
-          username: user.displayName,
-        })
-      : db.collection("posts").add({
-          message: input,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-          profilePic: user.photoURL,
-          username: user.displayName,
-          image: imageUrl,
-        });
+    db.collection("posts").add({
+      message: input,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      profilePic: user.photoURL,
+      username: user.displayName,
+      image: imageUrl,
+      feeling: chosenEmoji ? `is feeling ${chosenEmoji.emoji}` : "",
+    });
 
     setInput("");
     setImageUrl("");
@@ -71,13 +56,7 @@ function MessageSender() {
         <form>
           <input
             onChange={changeEvent}
-            value={
-              emojiDisplay
-                ? chosenEmoji
-                  ? input + chosenEmoji.emoji
-                  : input
-                : input
-            }
+            value={input}
             className="messageSender__input"
             placeholder={`Say something.. ${user.displayName}`}
           />
@@ -97,6 +76,11 @@ function MessageSender() {
           </div>
         </form>
       </div>
+      {emojiDisplay ? (
+        <div className="messageSender__middle">
+          <p>is feeling {chosenEmoji ? chosenEmoji.emoji : null}</p>
+        </div>
+      ) : null}
       <div className="messageSender__bottom">
         <div className="messageSender__option">
           <VideoCamIcon style={{ color: "red" }} />
@@ -110,7 +94,7 @@ function MessageSender() {
 
         <div onClick={openEmoji} className="messageSender__option">
           <InsertEmoticonIcon style={{ color: "orange" }} />
-          <h3>Feeling</h3>          
+          <h3>Feeling</h3>
         </div>
         {emojiDisplay ? (
           <div className="emojiContainer">
