@@ -8,6 +8,8 @@ import Login from "./Login";
 import { useStateValue } from "./StateProvider";
 import Covid from "./Covid";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import Messenger from "./Messenger";
+import Friends from "./Friends";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -28,9 +30,10 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Feed} />
                 <Route exact path="/covid" component={Covid} />
+                <Route exact path="/messenger" component={Messenger} />
+                <Route exact path="/friends" component={Friends} />
                 <Redirect to="/" />
               </Switch>
-              <Widgets />
             </div>
           </>
         )}

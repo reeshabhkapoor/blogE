@@ -40,8 +40,26 @@ function Sidebar() {
       </NavLink>
 
       <SidebarRow title="Pages" Icon={EmojiFlagsIcon} />
-      <SidebarRow title="Friends" Icon={PeopleIcon} />
-      <SidebarRow title="Messenger" Icon={ChatIcon} />
+      <NavLink
+        className="nav__component"
+        activeClassName="nav__component_active"
+        exact
+        style={{ textDecoration: "none" }}
+        to="/friends"
+      >
+        <SidebarRow title="Friends" Icon={PeopleIcon} />
+      </NavLink>
+
+      <NavLink
+        className="nav__component"
+        activeClassName="nav__component_active"
+        exact
+        style={{ textDecoration: "none" }}
+        to="/messenger"
+      >
+        <SidebarRow title="Messenger" Icon={ChatIcon} />
+      </NavLink>
+
       <SidebarRow title="MarketPlace" Icon={StorefrontIcon} />
       <SidebarRow title="Videos" Icon={VideoLibraryIcon} />
       <SidebarRow title="MarketPlace" Icon={ExpandMoreOutlined} />

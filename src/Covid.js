@@ -9,13 +9,14 @@ function Covid() {
   useEffect(() => {
     async function GetResponse() {
       const response = await axios.get(
-        `https://covid19-india-adhikansh.herokuapp.com/states`
+        `https://api.covidindiatracker.com/state_data.json`
       );
 
-      const updatedDetails = response.data.state.filter(
-        (state) => state.name !== "Cases being reassigned to states"
-      );
-      updateDetails(updatedDetails);
+      //   const updatedDetails = response.data.state.filter(
+      //     (state) => state.name !== "Cases being reassigned to states"
+      //   );
+      console.log(response.data);
+      updateDetails(response.data);
     }
 
     GetResponse();
