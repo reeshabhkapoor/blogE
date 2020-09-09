@@ -5,6 +5,7 @@ import { Button } from "@material-ui/core";
 import { auth, provider } from "./firebase";
 import { actionTypes } from "./reducer";
 import { useStateValue } from "./StateProvider";
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 
 function Login() {
   const [state, dispatch] = useStateValue();
@@ -18,7 +19,6 @@ function Login() {
           user: result.user,
           profilePic: result.additionalUserInfo.profile.picture,
         });
-        console.log(result);
       })
       .catch((error) => alert(error.message));
   };
@@ -26,7 +26,7 @@ function Login() {
   return (
     <div className="login">
       <div className="login__logo">
-        <FacebookIcon fontSize="large" />
+        <LocalLibraryIcon fontSize="large" />
         <div style={{ fontWeight: "900", fontSize: "60px" }}>blogE</div>
       </div>
       <Button type="submit" onClick={signIn}>

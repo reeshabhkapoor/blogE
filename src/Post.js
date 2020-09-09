@@ -6,8 +6,18 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import NearMeIcon from "@material-ui/icons/NearMe";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExpandMoreOutlinedIcon from "@material-ui/icons/ExpandMoreOutlined";
+import { PinDropSharp } from "@material-ui/icons";
 
-function Post({ profilePic, image, username, timestamp, message, feeling }) {
+function Post({
+  likes,
+  clicked,
+  profilePic,
+  image,
+  username,
+  timestamp,
+  message,
+  feeling,
+}) {
   return (
     <div className="post">
       <div className="post__top">
@@ -34,7 +44,11 @@ function Post({ profilePic, image, username, timestamp, message, feeling }) {
       </div>
 
       <div className="post__options">
-        <div className="post__option">
+        <div className="post__option" onClick={clicked}>
+          <div className="likes">
+            <h5>{likes}</h5>
+          </div>
+
           <ThumbUpIcon />
           <p>Like</p>
         </div>
@@ -47,7 +61,7 @@ function Post({ profilePic, image, username, timestamp, message, feeling }) {
           <p>Share</p>
         </div>
         <div className="post__option">
-          <AccountCircleIcon />
+          <AccountCircleIcon src={profilePic} />
           <ExpandMoreOutlinedIcon />
         </div>
       </div>

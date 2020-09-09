@@ -7,6 +7,7 @@ import db from "./firebase";
 
 function Feed() {
   const [posts, setPosts] = useState([]);
+  const [like, getLikes] = useState(0);
 
   useEffect(() => {
     db.collection("posts")
@@ -16,12 +17,21 @@ function Feed() {
       );
   }, []);
 
+  const handleLikes = (postId) => {
+    var post = posts.filter((post) => post.id === postId);
+    const newLikes = post[0].data.likes + 1;
+    getLikes(newLikes);
+    db.collection("posts").doc(postId).update({ likes: newLikes });
+  };
+
   return (
     <div className="feed">
       <StoryReel />
       <MessageSender />
       {posts.map((post) => (
         <Post
+          likes={post.data.likes}
+          clicked={() => handleLikes(post.id)}
           key={post.id}
           profilePic={post.data.profilePic}
           username={post.data.username}

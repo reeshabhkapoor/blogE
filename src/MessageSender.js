@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./MessageSender.css";
 import { Avatar } from "@material-ui/core";
 import VideoCamIcon from "@material-ui/icons/Videocam";
@@ -34,6 +34,7 @@ function MessageSender() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     db.collection("posts").add({
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -41,6 +42,7 @@ function MessageSender() {
       username: user.displayName,
       image: imageUrl,
       feeling: chosenEmoji ? `is feeling ${chosenEmoji.emoji}` : "",
+      likes: 0
     });
 
     setInput("");

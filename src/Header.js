@@ -13,9 +13,14 @@ import ForumIcon from "@material-ui/icons/Forum";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useStateValue } from "./StateProvider";
+import MenuAction from "./MenuAction";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 function Header() {
   const [{ user, profilePic }, dispatch] = useStateValue();
+  const handleLogout = () => {
+    window.location.reload(false);
+  };
 
   return (
     <div className="header">
@@ -53,15 +58,12 @@ function Header() {
         <IconButton>
           <AddIcon />
         </IconButton>
-        <IconButton>
-          <ForumIcon />
-        </IconButton>
-        <IconButton>
-          <NotificationsActiveIcon />
-        </IconButton>
-        <IconButton>
-          <ExpandMoreIcon />
-        </IconButton>
+        <MenuAction internalIcon={<ForumIcon fontSize="small" />} mainIcon={<ForumIcon />} text="You don't have any new messages." />
+        
+        <MenuAction internalIcon={<NotificationsActiveIcon fontSize="small" />} mainIcon={<NotificationsActiveIcon />} text="No new notifications." />
+        
+        <MenuAction internalIcon={<ExitToAppIcon fontSize="small" />} mainIcon={<ExpandMoreIcon />} clicked={handleLogout} text="Logout"/>
+       
       </div>
     </div>
   );
