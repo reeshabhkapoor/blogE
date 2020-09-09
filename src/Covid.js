@@ -9,7 +9,7 @@ function Covid() {
   useEffect(() => {
     async function GetResponse() {
       const response = await axios.get(
-        `http://covid19-india-adhikansh.herokuapp.com/states`
+        `https://covid19-india-adhikansh.herokuapp.com/states`
       );
 
       const updatedDetails = response.data.state.filter(
