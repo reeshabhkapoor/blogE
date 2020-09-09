@@ -1,4 +1,13 @@
-.sidebar{
-    padding: 25px 10px;
-    flex: 0.33;
+.sidebar {
+  padding: 25px 10px;
+  flex: 0.33;
+}
+
+.nav__component {
+  color: black;
+}
+
+.nav__component_active .sidebarRow {
+  background-color: lightgray;
+  border-radius: 10px;
 }

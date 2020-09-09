@@ -9,17 +9,36 @@ import StorefrontIcon from "@material-ui/icons/Storefront";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
 import { ExpandMoreOutlined } from "@material-ui/icons";
 import { useStateValue } from "./StateProvider";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   const [{ user }, dispatch] = useStateValue();
 
   return (
     <div className="sidebar">
-      <SidebarRow title={user.displayName} src={user.photoURL} />
-      <SidebarRow
-        title="COVID-19 Information Center"
-        Icon={LocalHospitalIcon}
-      />
+      <NavLink
+        className="nav__component"
+        activeClassName="nav__component_active"
+        exact
+        style={{ textDecoration: "none" }}
+        to="/"
+      >
+        <SidebarRow title={user.displayName} src={user.photoURL} />
+      </NavLink>
+
+      <NavLink
+        className="nav__component"
+        activeClassName="nav__component_active"
+        exact
+        style={{ textDecoration: "none" }}
+        to="/covid"
+      >
+        <SidebarRow
+          title="COVID-19 Information Center"
+          Icon={LocalHospitalIcon}
+        />
+      </NavLink>
+
       <SidebarRow title="Pages" Icon={EmojiFlagsIcon} />
       <SidebarRow title="Friends" Icon={PeopleIcon} />
       <SidebarRow title="Messenger" Icon={ChatIcon} />
