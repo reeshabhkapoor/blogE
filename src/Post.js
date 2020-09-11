@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Post.css";
 import { Avatar } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -6,9 +6,9 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import NearMeIcon from "@material-ui/icons/NearMe";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExpandMoreOutlinedIcon from "@material-ui/icons/ExpandMoreOutlined";
-import { PinDropSharp } from "@material-ui/icons";
 
 function Post({
+  alreadyLiked,
   likes,
   clicked,
   profilePic,
@@ -18,6 +18,7 @@ function Post({
   message,
   feeling,
 }) {
+  const style = alreadyLiked ? { color: "#2e81f4" } : null;
   return (
     <div className="post">
       <div className="post__top">
@@ -44,7 +45,7 @@ function Post({
       </div>
 
       <div className="post__options">
-        <div className="post__option" onClick={clicked}>
+        <div className="post__option" style={style} onClick={clicked}>
           <div className="likes">
             <h5>{likes}</h5>
           </div>
@@ -65,6 +66,8 @@ function Post({
           <ExpandMoreOutlinedIcon />
         </div>
       </div>
+
+     
     </div>
   );
 }

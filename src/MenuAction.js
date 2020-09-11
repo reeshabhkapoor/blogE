@@ -70,10 +70,8 @@ function MenuAction(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem>
-          <ListItemIcon onClick={props.clicked}>
-            {props.internalIcon}
-          </ListItemIcon>
+        <StyledMenuItem className="styleMenuItem" onClick={props.clicked}>
+          <ListItemIcon>{props.internalIcon}</ListItemIcon>
           <ListItemText primary={props.text} />
         </StyledMenuItem>
       </StyledMenu>

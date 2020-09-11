@@ -14,6 +14,7 @@ import Friends from "./Friends";
 function App() {
   const [{ user }, dispatch] = useStateValue();
 
+
   return (
     <BrowserRouter>
       <div className="app">
