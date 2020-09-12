@@ -12,15 +12,12 @@ function Covid() {
         `https://api.covidindiatracker.com/state_data.json`
       );
 
-      //   const updatedDetails = response.data.state.filter(
-      //     (state) => state.name !== "Cases being reassigned to states"
-      //   );
       console.log(response.data);
       updateDetails(response.data);
     }
 
     GetResponse();
-  });
+  }, []);
 
   return (
     <div className="covid__details">

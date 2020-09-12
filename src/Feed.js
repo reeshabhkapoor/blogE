@@ -32,6 +32,15 @@ function Feed() {
     return isAlreadyLiked;
   };
 
+  const handleDeletePost = (postId) => {
+    if (window.confirm("Are you sure you want to delete the post?")) {
+      db.collection("posts")
+        .doc(postId)
+        .delete()
+        .then(() => alert("Your post is deleted."));
+    }
+  };
+
   const handleLikes = (postId) => {
     db.collection("posts")
       .doc(postId)
@@ -59,10 +68,12 @@ function Feed() {
       <MessageSender />
       {posts.map((post) => (
         <Post
+          userId={post.data.userId}
           comments={post.data.comments}
           postId={post.id}
           likes={post.data.likes}
           clicked={() => handleLikes(post.id)}
+          deletePost={() => handleDeletePost(post.id)}
           alreadyLiked={checkAlreadyLiked(post.id)}
           key={post.id}
           profilePic={post.data.profilePic}

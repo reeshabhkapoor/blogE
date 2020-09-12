@@ -30,7 +30,6 @@ const CommentSection = ({ postId }) => {
 
 
   const [state] = useStateValue();
-  console.log(state.user.providerData[0]);
   const changeEvent = (event) => {
     setInput(event.target.value);
   };

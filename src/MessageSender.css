@@ -51,6 +51,18 @@
   border-radius: 20px;
   cursor: pointer;
 }
+
+.add__image__url {
+  padding: 5px;
+  margin: 3px;
+}
+
+.add__image__url:hover {
+  background-color: #effef5;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .messageSender__input {
   flex: 1;
 }

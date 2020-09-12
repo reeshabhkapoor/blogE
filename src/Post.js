@@ -9,8 +9,12 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExpandMoreOutlinedIcon from "@material-ui/icons/ExpandMoreOutlined";
 import CommentSection from "./CommentSection";
 import Comments from "./Comments";
+import HighlightOffRoundedIcon from "@material-ui/icons/HighlightOffRounded";
+import { useStateValue } from "./StateProvider";
 
 function Post({
+  deletePost,
+  userId,
   comments,
   postId,
   alreadyLiked,
@@ -24,6 +28,7 @@ function Post({
   feeling,
 }) {
   const style = alreadyLiked ? { color: "#2e81f4" } : null;
+  const [{ user }, dispatch] = useStateValue();
 
   const [enableComments, changeCommentsDisplay] = useState(false);
 
@@ -40,6 +45,11 @@ function Post({
           </div>
           <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
         </div>
+        {userId && userId === user.uid ? (
+          <div className="delete__icon" onClick={deletePost}>
+            <HighlightOffRoundedIcon />
+          </div>
+        ) : null}
       </div>
 
       {message === "" ? null : (
@@ -85,8 +95,8 @@ function Post({
 
       {comments ? (
         <div className="comments">
-          {comments.map((comment) => (
-            <Comments comment={comment} />
+          {comments.map((comment, index) => (
+            <Comments key={index} comment={comment} />
           ))}
         </div>
       ) : null}

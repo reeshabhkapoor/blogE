@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Story.css";
 import { Avatar } from "@material-ui/core";
 
 function Story({ image, profileSrc, title }) {
+  const [storyClass, changeStoryClass] = useState("story");
+
   return (
     <div style={{ backgroundImage: `url(${image})` }} className="story">
       <Avatar className="story__avatar" src={profileSrc} />

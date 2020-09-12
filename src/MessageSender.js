@@ -9,6 +9,7 @@ import db from "./firebase";
 import firebase from "firebase";
 import PublishIcon from "@material-ui/icons/Publish";
 import Picker from "emoji-picker-react";
+import ImageSearchRoundedIcon from "@material-ui/icons/ImageSearchRounded";
 
 function MessageSender() {
   const [input, setInput] = useState("");
@@ -16,9 +17,9 @@ function MessageSender() {
   const [{ user }, dispatch] = useStateValue();
   const [chosenEmoji, setChosenEmoji] = useState(null);
   const [emojiDisplay, changeEmojiDisplay] = useState(false);
+  const [addImageUrl, changeImageUrlDisplay] = useState(false);
 
-  const onEmojiClick = (event, emojiObject) => {
-    var currentValue = input;
+  const onEmojiClick = (emojiObject) => {
     setChosenEmoji(emojiObject);
   };
 
@@ -33,7 +34,6 @@ function MessageSender() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
     db.collection("posts").add({
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -41,7 +41,10 @@ function MessageSender() {
       username: user.displayName,
       image: imageUrl,
       feeling: chosenEmoji ? `is feeling ${chosenEmoji.emoji}` : "",
-      likes: 0
+      likes: 0,
+      userId: user.uid,
+      likesPeople: [],
+      comments: [],
     });
 
     setInput("");
@@ -56,20 +59,31 @@ function MessageSender() {
         <Avatar src={user.photoURL} />
         <form>
           <input
+            type="textarea"
             onChange={changeEvent}
             value={input}
             className="messageSender__input"
             placeholder={`Say something.. ${user.displayName}`}
           />
-          <input
-            onChange={(e) => setImageUrl(e.target.value)}
-            value={imageUrl}
-            type="text"
-            placeholder="image URL (Optional)"
-          />
+          {addImageUrl ? (
+            <input
+              onChange={(e) => setImageUrl(e.target.value)}
+              value={imageUrl}
+              type="text"
+              placeholder="image URL (Optional)"
+            />
+          ) : null}
+
           {/* <div onClick={openEmoji} className="emojiSelect">
             <InsertEmoticonIcon style={{ color: "orange" }} />
           </div> */}
+          <div
+            className="add__image__url"
+            onClick={() => changeImageUrlDisplay(!addImageUrl)}
+          >
+            <ImageSearchRoundedIcon />
+          </div>
+
           <div className="submitPost">
             <PublishIcon onClick={handleSubmit} type="submit">
               Hidden Submit

@@ -13,6 +13,19 @@
   padding: 15px;
 }
 
+.delete__icon {
+  color: red;
+  top: 0;
+  position: absolute;
+  right: 0;
+  transition: transform 0.5s ease;
+}
+
+.delete__icon:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
 .post__avatar {
   margin-right: 10px;
 }
@@ -84,17 +97,22 @@
   align-items: center;
   text-align: center;
   color: white;
-  background-image: linear-gradient(black,gray);
+  background-image: linear-gradient(black, gray);
   padding: 0 4px;
   margin: 2px 5px;
   background-color: yellow;
   border-radius: 10px;
 }
 
-.likes h5{
+.likes h5 {
   font-size: small;
 }
 
-.comments__section{
-  display : flex;
+.comments__section {
+  display: flex;
+}
+
+.post__main__section{
+  display: flex;
+  flex-direction: column;
 }
