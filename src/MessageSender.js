@@ -9,7 +9,6 @@ import db from "./firebase";
 import firebase from "firebase";
 import PublishIcon from "@material-ui/icons/Publish";
 import Picker from "emoji-picker-react";
-import { CodeSharp } from "@material-ui/icons";
 
 function MessageSender() {
   const [input, setInput] = useState("");

@@ -1,0 +1,36 @@
+.comments__main {
+  display: flex;
+  border-bottom-style: 1px solid #eff2f5;
+  padding: 15px;
+  padding-left:20px;
+}
+
+.show__comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.show__comments .comment__text {
+  width: 90%;
+  outline-width: 0;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: #eff2f5;
+}
+
+.comment__text {
+  display: flex;
+}
+
+.time {
+  display: flex;
+  font-size: 10px;
+  color: gray;
+  padding-left: 15px;
+}
+
+.comment__avatar {
+}

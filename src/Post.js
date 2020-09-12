@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import "./Post.css";
 import { Avatar } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
+import InsertCommentIcon from "@material-ui/icons/InsertComment";
 import NearMeIcon from "@material-ui/icons/NearMe";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ExpandMoreOutlinedIcon from "@material-ui/icons/ExpandMoreOutlined";
+import CommentSection from "./CommentSection";
+import Comments from "./Comments";
 
 function Post({
+  comments,
+  postId,
   alreadyLiked,
   likes,
   clicked,
@@ -19,6 +24,9 @@ function Post({
   feeling,
 }) {
   const style = alreadyLiked ? { color: "#2e81f4" } : null;
+
+  const [enableComments, changeCommentsDisplay] = useState(false);
+
   return (
     <div className="post">
       <div className="post__top">
@@ -53,8 +61,11 @@ function Post({
           <ThumbUpIcon />
           <p>Like</p>
         </div>
-        <div className="post__option">
-          <ChatBubbleOutlineIcon />
+        <div
+          className="post__option"
+          onClick={() => changeCommentsDisplay(!enableComments)}
+        >
+          {enableComments ? <InsertCommentIcon /> : <ChatBubbleOutlineIcon />}
           <p>Comment</p>
         </div>
         <div className="post__option">
@@ -66,8 +77,19 @@ function Post({
           <ExpandMoreOutlinedIcon />
         </div>
       </div>
+      {enableComments ? (
+        <div className="comments__section">
+          <CommentSection postId={postId} />
+        </div>
+      ) : null}
 
-     
+      {comments ? (
+        <div className="comments">
+          {comments.map((comment) => (
+            <Comments comment={comment} />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }

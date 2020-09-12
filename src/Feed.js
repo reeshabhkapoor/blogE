@@ -8,11 +8,9 @@ import { useStateValue } from "./StateProvider";
 
 function Feed() {
   const [posts, setPosts] = useState([]);
-  const [likeStyle, changeLikeStyle] = useState(0);
   const [state] = useStateValue();
 
   useEffect(() => {
-
     db.collection("posts")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) =>
@@ -20,13 +18,13 @@ function Feed() {
       );
   }, []);
 
-  const checkAlreadyLiked = (postId) => {    
+  const checkAlreadyLiked = (postId) => {
     let isAlreadyLiked = false;
 
     posts
       .filter((post) => post.id === postId)
       .map((post) => {
-        if (post.data.likesPeople.includes(state.user.providerData[0].uid)) {          
+        if (post.data.likesPeople.includes(state.user.providerData[0].uid)) {
           isAlreadyLiked = true;
         }
       });
@@ -49,8 +47,8 @@ function Feed() {
               ],
               likes: doc.data().likes + 1,
             });
-        }else{
-          alert("You have already liked the post.")
+        } else {
+          alert("You have already liked the post.");
         }
       });
   };
@@ -61,6 +59,8 @@ function Feed() {
       <MessageSender />
       {posts.map((post) => (
         <Post
+          comments={post.data.comments}
+          postId={post.id}
           likes={post.data.likes}
           clicked={() => handleLikes(post.id)}
           alreadyLiked={checkAlreadyLiked(post.id)}

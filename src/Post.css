@@ -95,3 +95,6 @@
   font-size: small;
 }
 
+.comments__section{
+  display : flex;
+}
